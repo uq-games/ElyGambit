@@ -7,7 +7,8 @@
 🎬 **[B站游戏演示 · 往世的涟漪](<https://www.bilibili.com/video/BV1h4W26yEKQ>)**  
 🎮 **[下载 Windows 游戏（GitHub Release）](<https://github.com/uq-games/ElyGambit/releases/tag/v1.0.0-rc1>)**
 
-> **想玩游戏：请到 Release 下载 `ElyGambit往世之弈.zip`，不要下载 GitHub 自动生成的 “Source code” 压缩包。**  
+> **想玩游戏：请到 Release 下载显示名称为 `ElyGambit往世之弈.zip` 的附件（实际下载文件名为 `ElyGambit.zip`），不要下载 GitHub 自动生成的 “Source code” 压缩包。**
+>
 > 本仓库是代码展示快照，不含完整游戏资源，不能仅凭克隆仓库直接运行游戏。
 
 ## 游戏内容
@@ -21,7 +22,7 @@
 
 当前公开包为 **`1.0.0-rc1` / Win64 Shipping**，游戏构建批次为 **`radiantvow20261111`**。这是预发行候选版本，不是已完成全平台兼容验收的正式版。
 
-1. 打开 [Release 页面](<https://github.com/uq-games/ElyGambit/releases/tag/v1.0.0-rc1>)，下载 **`ElyGambit往世之弈.zip`**。
+1. 打开 [Release 页面](<https://github.com/uq-games/ElyGambit/releases/tag/v1.0.0-rc1>)，选择显示为 **`ElyGambit往世之弈.zip`** 的附件；浏览器实际保存为 **`ElyGambit.zip`**。
 2. **完整解压**到普通文件夹，不要在压缩软件内直接运行，也不要只解压 EXE。
 3. 进入解压后的 `ElyGambit` 文件夹，双击 **`启动游戏.exe`**。游玩无需安装 Unreal Engine。
 4. 若提示缺少 VCRUNTIME/MSVCP 等运行库，运行包内 `Engine/Extras/Redist/en-us/vc_redist.x64.exe`，安装或修复后重试。
@@ -38,10 +39,10 @@
 Release 同时提供 `SHA256SUMS.txt`。Windows PowerShell 可运行：
 
 ```powershell
-Get-FileHash -LiteralPath '.\ElyGambit往世之弈.zip' -Algorithm SHA256
+Get-FileHash -LiteralPath '.\ElyGambit.zip' -Algorithm SHA256
 ```
 
-> 本次仅修正下载附件名中的“弈”，没有修改或重新打包游戏内容。包内旧运行说明仍可能写 `ElyGambit.exe`，请以实际的 **`启动游戏.exe`** 为准。包内旧文件校验清单可能仍使用改名前的启动文件名；上述 ZIP 校验值对应本次实际发布的完整下载文件。
+> 本地发布副本与 GitHub 附件显示名称均已修正为“往世之弈”。GitHub 自动从实际资产文件名中移除了中文，故下载为 `ElyGambit.zip`；下载后可自行改名为 `ElyGambit往世之弈.zip`。没有修改或重新打包游戏内容。包内旧运行说明仍可能写 `ElyGambit.exe`，请以实际的 **`启动游戏.exe`** 为准。包内旧文件校验清单可能仍使用改名前的启动文件名；上述 ZIP 校验值对应本次实际发布的完整下载文件。
 
 ## 基本操作
 
