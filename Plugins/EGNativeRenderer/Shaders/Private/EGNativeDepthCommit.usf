@@ -1,0 +1,7 @@
+#include "/Engine/Private/Common.ush"
+// Only device depth is copied back. Original source stencil remains private.
+Texture2D<float> SourceDepth;
+void MainPS(float4 SvPosition : SV_Position,out float Depth : SV_Depth)
+{
+    Depth=SourceDepth.Load(int3(int2(SvPosition.xy),0));
+}

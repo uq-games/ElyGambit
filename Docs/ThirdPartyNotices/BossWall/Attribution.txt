@@ -1,0 +1,7 @@
+Hologram & Glitch FX Free by heyheythere - https://heyheythere.itch.io/hologram-glitch-free - CC BY 4.0
+License: https://creativecommons.org/licenses/by/4.0/
+
+ElyGambit uses the scanlines PNG atlas in its private corruption barrier material.
+Adaptation: alpha-only sampling, blue-purple tint, reduced opacity, and animation
+driven by the game's pause-aware presentation clock. The author does not endorse
+this adaptation. This external texture is not an original Honkai Impact 3rd asset.

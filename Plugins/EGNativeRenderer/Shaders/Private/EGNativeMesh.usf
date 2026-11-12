@@ -1,0 +1,47 @@
+#include "/Engine/Private/Common.ush"
+#include "/Engine/Generated/Material.ush"
+#include "/Engine/Generated/VertexFactory.ush"
+
+struct FEGNativeVSToPS
+{
+    FVertexFactoryInterpolantsVSToPS FactoryInterpolants;
+    FStereoVSOutput StereoOutput;
+    INVARIANT_OUTPUT float4 Position : SV_POSITION;
+};
+
+#if VERTEXSHADER
+void MainVS(FVertexFactoryInput Input, out FEGNativeVSToPS Output)
+{
+    StereoSetupVF(Input,Output.StereoOutput);
+    FVertexFactoryIntermediates VF=GetVertexFactoryIntermediates(Input);
+    float4 World=VertexFactoryGetWorldPosition(Input,VF);
+    half3x3 Tangent=VertexFactoryGetTangentToLocal(Input,VF);
+    FMaterialVertexParameters P=GetMaterialVertexParameters(Input,VF,World.xyz,Tangent);
+#if NUM_MATERIAL_OUTPUTS_GETEGSOURCENATIVE == 3
+    float4 NativeClip=GetEGSourceNative2(P);
+    Output.Position=float4(NativeClip.xy,NativeClip.w-NativeClip.z,NativeClip.w);
+#else
+    Output.Position=mul(World,ResolvedView.TranslatedWorldToClip);
+#endif
+    Output.FactoryInterpolants=VertexFactoryGetInterpolantsVSToPS(Input,VF,P);
+}
+#endif
+
+#if PIXELSHADER
+void MainPS(FVertexFactoryInterpolantsVSToPS Interpolants,
+    in FStereoPSInput StereoInput, in INPUT_POSITION_QUALIFIERS float4 SvPosition : SV_Position
+    OPTIONAL_IsFrontFace, out float4 Color : SV_Target0, out float4 Auxiliary : SV_Target1)
+{
+    StereoSetupPS(StereoInput);
+    FMaterialPixelParameters P=GetMaterialPixelParameters(Interpolants,SvPosition);
+    FPixelMaterialInputs Inputs;
+    CalcMaterialParameters(P,Inputs,SvPosition,bIsFrontFace);
+#if NUM_MATERIAL_OUTPUTS_GETEGSOURCENATIVE == 3
+    Color=GetEGSourceNative0(P);
+    Auxiliary=GetEGSourceNative1(P);
+    Color.rgb*=ResolvedView.PreExposure;
+#else
+    clip(-1); Color=0; Auxiliary=0;
+#endif
+}
+#endif

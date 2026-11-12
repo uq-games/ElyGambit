@@ -1,0 +1,10 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "Source native character passes",
+  "Description": "Original source material passes on existing skeletal meshes. Presentation only.",
+  "CanContainContent": false,
+  "EnabledByDefault": true,
+  "Modules": [{"Name": "EGNativeRenderer", "Type": "Runtime", "LoadingPhase": "PostConfigInit"}]
+}
